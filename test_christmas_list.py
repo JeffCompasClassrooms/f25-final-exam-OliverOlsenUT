@@ -102,6 +102,27 @@ def describe_christmas_list():
             with open(FILEPATH, "rb") as f:
                 assert pickle.load(f) == [{"name": "Nintendo Switch 2", "purchased": False}]
     
+    def describe_print_list():
+        def it_prints_list(capsys, setup_db):
+            l = ChristmasList(FILEPATH)
+            l.print_list()
+            captured = capsys.readouterr()
+            assert captured.out == "[_] Nintendo Switch 2\n"
+        
+        def it_prints_list_checked(capsys, setup_db):
+            l = ChristmasList(FILEPATH)
+            l.check_off("Nintendo Switch 2")
+            l.print_list()
+            captured = capsys.readouterr()
+            assert captured.out == "[x] Nintendo Switch 2\n"
+        
+        def it_prints_multiple_list(capsys, setup_db):
+            l = ChristmasList(FILEPATH)
+            l.add("New Item")
+            l.check_off("Nintendo Switch 2")
+            l.print_list()
+            captured = capsys.readouterr()
+            assert captured.out == "[x] Nintendo Switch 2\n[_] New Item\n"
 
 
 if __name__ == "__main__":
