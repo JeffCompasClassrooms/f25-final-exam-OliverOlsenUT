@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Install pytest
-        run: pip install pytest pytest-spec pytest-describe
+        run: pip install pytest pytest-spec pytest-describe pytest-mock
       - name: Run pytest
         run: pytest --spec test_brute.py
   TestChristmasList:
@@ -24,6 +24,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Install pytest
-        run: pip install pytest pytest-spec pytest-describe
+        run: pip install pytest pytest-spec pytest-describe pytest-mock
       - name: Run pytest
         run: pytest --spec test_christmas_list.py
